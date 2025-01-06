@@ -4,6 +4,7 @@ export const shopController = {
   // Create shop
   async create(req, res) {
     try {
+      console.log('inside');
       const shop = await prisma.shop.create({
         data: req.body
       });
@@ -31,6 +32,19 @@ export const shopController = {
       });
       if (!shop) return res.status(404).json({ error: 'Shop not found' });
       res.json(shop);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  },
+
+  // Get shops by user id
+  async findByUserId(req, res) {
+    try {
+      const shops = await prisma.shop.findMany({
+        where: { userId: parseInt(req.params.id) }
+      });
+      if (shops.length === 0) return res.status(404).json({ error: 'Shops not found' });
+      res.json(shops);
     } catch (error) {
       res.status(500).json({ error: error.message });
     }

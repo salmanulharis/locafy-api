@@ -6,6 +6,7 @@ const router = express.Router();
 router.post('/', shopController.create);
 router.get('/', shopController.findAll);
 router.get('/:id', shopController.findOne);
+router.get('/user/:id', shopController.findByUserId);
 router.put('/:id', shopController.update);
 router.delete('/:id', shopController.delete);
 
