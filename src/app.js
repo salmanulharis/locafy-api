@@ -4,12 +4,15 @@ import loginRoutes from './routes/login.routes.js';
 import userRoutes from './routes/user.routes.js';
 import shopRoutes from './routes/shop.routes.js';
 import productRoutes from './routes/product.routes.js';
+import dotenv from 'dotenv';
 
 const app = express();
 
 // Enable CORS
+dotenv.config();
+
 app.use(cors({
-  origin: 'http://localhost:4000', // Allow requests from the frontend origin
+  origin: process.env.FRONTEND_ORIGIN, // Allow requests from the frontend origin
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
   allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
 }));
