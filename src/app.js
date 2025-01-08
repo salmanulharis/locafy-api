@@ -12,7 +12,7 @@ const app = express();
 dotenv.config();
 
 app.use(cors({
-  origin: process.env.FRONTEND_ORIGIN, // Allow requests from the frontend origin
+  origin: process.env.FRONTEND_ORIGIN || '*', // Allow requests from the frontend origin or any origin if not specified
   methods: ['GET', 'POST', 'PUT', 'DELETE'], // Specify allowed methods
   allowedHeaders: ['Content-Type', 'Authorization'], // Specify allowed headers
 }));
